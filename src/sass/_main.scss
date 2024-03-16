@@ -1,0 +1,1083 @@
+*:not(svg) {
+    cursor: url("../assets/img/pen.png") 0 100, auto;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "ashcanbb", serif;
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    z-index: -3;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    // background: url("../assets/img/bg.jpg");
+    // background-position: center;
+    // background-size: cover;
+    // background-size: 105%;
+    position: relative;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    gap: 0;
+    cursor: url("../assets/img/pen.png") 0 100, auto;
+
+    input:hover {
+        cursor: url("../assets/img/pen.png") 0 100, auto;
+    }
+    textarea:hover {
+        cursor: url("../assets/img/pen.png") 0 100, auto;
+    }
+
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: wait;
+        z-index: 9999;
+
+        &-content {
+            cursor: inherit;
+            margin-bottom: 150px;
+
+            & > span {
+                color: rgb(241, 241, 241);
+                text-align: center;
+                font-family: Calibri, sans-serif;
+                display: inline-block;
+                width: 100%;
+                // height: 100%;
+                padding-top: 50px;
+                // margin-top: auto;
+
+                font-size: 2rem;
+                vertical-align: top;
+                cursor: inherit;
+                &::selection {
+                    background-color: rgba(30, 198, 204, 0.844);
+                }
+                &.loading-txt {
+                    font-size: 4rem;
+                    vertical-align: bottom;
+                    // line-height: 15vh;
+                }
+
+                &.errorMsg {
+                    margin-bottom: 60px;
+                }
+            }
+
+            .button-group {
+                display: none;
+                justify-content: center;
+                flex-wrap: wrap;
+                cursor: default;
+                button.btn-reload {
+                    box-shadow: inset 0px -3px 7px 0px #29bbff;
+                    background: linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
+                    background-color: #2dabf9;
+                    border-radius: 3px;
+                    border: 1px solid #0b0e07;
+                    display: inline-block;
+                    cursor: pointer;
+                    color: #ededed;
+                    text-shadow: 1px 1px 0px rgb(0, 0, 0);
+                    font-family: Arial, sans-serif;
+                    font-weight: 700;
+                    font-size: 16px;
+                    padding: 8px 21px;
+                    text-decoration: none;
+
+                    &:hover {
+                        background: linear-gradient(to bottom, #0688fa 5%, #2dabf9 100%);
+                        background-color: #0688fa;
+                    }
+                    &:active {
+                        position: relative;
+                        top: 1px;
+                    }
+
+                    margin: 5px;
+                }
+
+                button.btn-continue {
+                    box-shadow: inset 0px 39px 0px -24px #e65f57;
+                    background-color: #d6483e;
+                    border-radius: 4px;
+                    border: 1px solid #b52626;
+                    display: inline-block;
+                    cursor: pointer;
+                    color: #ededed;
+                    text-shadow: 1px 1px 0px rgb(0, 0, 0);
+                    font-family: Arial;
+                    font-weight: 700;
+                    font-size: 16px;
+                    padding: 8px 21px;
+                    text-decoration: none;
+
+                    &:hover {
+                        background-color: #eb554d;
+                    }
+                    &:active {
+                        position: relative;
+                        top: 1px;
+                    }
+                    margin: 5px;
+                }
+            }
+        }
+
+        .simple-spinner {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            cursor: not-allowed;
+        }
+
+        .simple-spinner span {
+            display: block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid transparent;
+            border-radius: 50%;
+            border-right-color: rgba(255, 255, 255, 0.7);
+            cursor: not-allowed;
+            animation: spinner-anim 0.8s linear infinite;
+        }
+    }
+
+    .ui-parent {
+        width: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 50px 0 140px 0;
+        cursor: default;
+
+        circle,
+        path {
+            cursor: not-allowed;
+        }
+
+        .ui-error {
+            padding-left: 25px;
+            padding-right: 25px;
+            max-width: 250px;
+            width: 100%;
+            cursor: not-allowed;
+            // z-index: 1200210;
+
+            &-circle {
+                stroke-dasharray: 260.75219024795285px, 260.75219024795285px;
+                stroke-dashoffset: 260.75219024795285px;
+                animation: ani-error-circle 1.2s linear;
+            }
+            &-line1 {
+                stroke-dasharray: 54px 55px;
+                stroke-dashoffset: 55px;
+                stroke-linecap: round;
+                animation: ani-error-line 0.15s 1.2s linear both;
+            }
+            &-line2 {
+                stroke-dasharray: 54px 55px;
+                stroke-dashoffset: 55px;
+                stroke-linecap: round;
+                animation: ani-error-line 0.2s 0.9s linear both;
+            }
+        }
+    }
+
+    .modal-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(27, 27, 27);
+        z-index: 9998;
+    }
+}
+
+body::before {
+    content: "";
+    background: url("../assets/img/bg.jpg");
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    transform: scale(1.02);
+    transform-origin: center;
+    z-index: -3;
+}
+
+::selection {
+    background-color: rgba(234, 255, 0, 0.844);
+}
+
+header {
+    background-color: rgba(238, 238, 238, 0.2);
+    font-size: 2.6rem;
+    letter-spacing: 2px;
+    color: #fcfcfc;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    display: none;
+
+    padding: 3px 0;
+
+    h1 {
+        text-align: center;
+        margin: 0;
+        vertical-align: middle;
+    }
+}
+
+main.main {
+    position: relative;
+    z-index: 0;
+    margin: auto 0;
+    width: 100%;
+    max-width: 990px;
+    background-size: cover;
+
+    & > div.wrapper {
+        margin: auto;
+        background-color: rgb(231, 232, 199);
+        width: 100%;
+
+        &::after {
+            content: "";
+            background-color: rgb(85, 85, 219);
+            height: 100%;
+            width: 1px;
+            padding: 1px;
+            z-index: 100;
+            position: absolute;
+            top: 0;
+            left: 70px;
+            bottom: 40px;
+        }
+
+        .padding {
+            font-size: 2.8rem;
+        }
+
+        .bundle {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .calorie-input-wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .space-total {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .meal-wrapper,
+        .workout-wrapper {
+            width: 100%;
+            max-width: 120px;
+            min-height: 26px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .calorie-input-wrapper {
+            display: flex;
+            flex-direction: row;
+            text-align: right;
+        }
+
+        .calorie-label {
+            vertical-align: middle;
+            height: 26px;
+            align-self: baseline;
+        }
+
+        input {
+            &[type="number"]:placeholder-shown + span.calorie-label {
+                visibility: hidden;
+            }
+
+            &::placeholder {
+                visibility: hidden;
+                font-family: inherit;
+                color: #5f5f5f;
+            }
+
+            &:focus::placeholder {
+                visibility: visible;
+            }
+
+            &[type="number"] {
+                text-align: right;
+                &.meal-calories,
+                &.workout-calories {
+                    appearance: textfield;
+                    text-align: right;
+                    height: 26px;
+                    padding: 0;
+                    &:not(:disabled):hover {
+                        background-color: rgb(223, 255, 224);
+                    }
+                    &:focus {
+                        background-color: rgb(197, 250, 200) !important;
+                        transition: all 0.3s;
+                    }
+
+                    &::selection {
+                        background-color: rgb(128, 255, 135);
+                    }
+
+                    &:disabled {
+                        cursor: not-allowed;
+                    }
+                }
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                }
+            }
+        }
+
+        .meal-item,
+        .workout-item {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 440px;
+            z-index: 200;
+
+            input {
+                color: var(--primary-color, $primary-blue-ink);
+                background-color: transparent;
+                outline: none;
+                border: none;
+
+                &[type="text"] {
+                    width: 100%;
+                    max-width: 320px;
+                }
+                &[type="number"] {
+                    width: 100%;
+                    max-width: 120px;
+                    transition: all 0.3s;
+                    &::placeholder {
+                        letter-spacing: -2px;
+                        font-size: 2.7rem;
+                        text-align: left;
+                    }
+                }
+            }
+
+            textarea {
+                position: relative;
+                z-index: 2;
+                max-width: 320px;
+                width: 100%;
+                height: 26px;
+                vertical-align: middle;
+                color: var(--primary-color, $primary-blue-ink);
+                font-size: 2.6rem;
+                line-height: 26px;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                outline: none;
+                border: none;
+                background-color: rgb(231, 232, 199);
+                // background-color: rgb(0, 216, 58);
+                resize: none;
+                overflow-y: hidden;
+                overflow-x: visible;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+
+                &:not(:focus)::placeholder {
+                    opacity: 0;
+                }
+
+                &:focus::placeholder {
+                    opacity: 1;
+                    color: #3a3a3a;
+                }
+
+                &:hover {
+                    background-color: rgb(248, 248, 224);
+                    transition: all 0.3s;
+                }
+
+                &:focus {
+                    background-color: rgb(248, 250, 197);
+                    transition: all 0.3s;
+                }
+
+                &::selection {
+                    background-color: rgb(251, 255, 135);
+                }
+            }
+        }
+
+        div:not(.date, .space, .name-field, .calorie-input-wrapper) {
+            height: 26px;
+        }
+
+        div.total-values-table {
+            height: 52px;
+            line-height: 38px;
+        }
+
+        div.item-totals {
+            text-align: center;
+            margin-right: 45px;
+            display: grid;
+            grid-template-columns: min-content 1fr min-content;
+            grid-template-rows: minmax(26px, 1fr) minmax(26px, 1fr);
+            position: relative;
+            z-index: 4;
+
+            .title-container {
+                grid-column: 1 / -1;
+                grid-row: 1 / 2;
+
+                div {
+                    max-width: 373px;
+                    width: 100%;
+                }
+
+                .meal-total {
+                    margin-right: 20px;
+                }
+            }
+
+            .total-values-table {
+                grid-column: 1 / -1;
+                grid-row: 2 / -1;
+            }
+        }
+
+        div.stats {
+            padding-left: 75px;
+            padding-right: 47px;
+            height: 26px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            color: var(--primary-color, $primary-blue-ink);
+            font-size: 2.8rem;
+
+            div {
+                text-decoration: solid;
+            }
+        }
+        div.introduction {
+            padding-left: 75px;
+            padding-right: 30px;
+        }
+
+        .title-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        div.meals,
+        div.workouts,
+        div.meal-total-title,
+        div.workout-total-title,
+        div.grand-total {
+            text-transform: uppercase;
+        }
+
+        div.meals,
+        div.workouts {
+            width: 100%;
+            max-width: 400px;
+            text-align: left;
+        }
+
+        div.grand-total {
+            color: var(--primary-color, $primary-blue-ink);
+            font-size: 2.6rem;
+        }
+
+        div.workout-total {
+            z-index: 200;
+        }
+
+        div.meals,
+        div.meal-item {
+            width: 100%;
+            margin-left: 4px;
+            margin-right: 20px;
+        }
+
+        div.workouts,
+        div.workout-item {
+            margin-right: 5px;
+        }
+
+        > hr.line {
+            position: relative;
+            width: auto;
+            padding: 1px 0;
+            margin: 0;
+            border: none;
+            outline: none;
+            background-color: rgb(85, 85, 219);
+            z-index: 3;
+        }
+
+        > .item {
+            background-color: rgb(231, 232, 199);
+            height: 3px;
+        }
+
+        > div.space-end {
+            height: 50px;
+        }
+
+        div.space {
+            display: flex;
+            flex-direction: row;
+            .padding {
+                height: 26px;
+                min-height: 26px;
+                min-width: 70px;
+                color: var(--primary-color, $primary-blue-ink);
+                text-align: center;
+                line-height: 30px;
+            }
+
+            .item {
+                height: 26px;
+                min-height: 26px;
+                width: 100%;
+                color: var(--primary-color, $primary-blue-ink);
+                font-size: 2.8rem;
+                position: relative;
+            }
+
+            &-total {
+                position: relative;
+                width: 100%;
+                z-index: 101;
+
+                .line-total {
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    width: 99.8%;
+                    padding: 1px 0;
+                    margin: 0;
+                    outline: none;
+                    background-color: rgb(12, 12, 183);
+                    z-index: -1;
+                }
+
+                .grand-total {
+                    width: 100%;
+                    max-width: 1030px;
+                    font-size: 2.8rem;
+                    margin-left: 25px;
+
+                    span {
+                        margin: 0 5px;
+                    }
+                }
+                .padding {
+                    width: 75px;
+                    height: 26px;
+                    min-height: 26px;
+                    width: 70px;
+                    color: var(--primary-color, $primary-blue-ink);
+                    text-align: center;
+                    line-height: 30px;
+                }
+            }
+        }
+        .coffee-stain {
+            position: absolute;
+            width: 370px;
+            height: 370px;
+            bottom: 0;
+            right: 0;
+            z-index: 3;
+            opacity: 0.7;
+        }
+
+        .total-meal-calorie-count,
+        .total-workout-calorie-count,
+        .total-calorie-count {
+            text-transform: none;
+        }
+
+        .total-values-table {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            height: 26px;
+            min-height: 26px;
+            width: 100%;
+            color: var(--primary-color, $primary-blue-ink);
+            font-size: 2.6rem;
+            letter-spacing: 2px;
+            z-index: 101;
+
+            div {
+                text-align: center;
+                width: 374px;
+            }
+        }
+
+        .calorie-goal-comparison {
+            &-green {
+                color: rgb(0, 119, 0);
+            }
+
+            &-red {
+                color: rgb(223, 0, 0);
+            }
+            &-black {
+                color: rgb(9, 9, 9);
+            }
+        }
+        .space-other {
+            display: flex;
+            flex-direction: row;
+            .padding {
+                height: 26px;
+                min-height: 26px;
+                max-width: 70px;
+                width: 100%;
+                color: var(--primary-color, $primary-blue-ink);
+                text-align: center;
+                line-height: 30px;
+            }
+
+            .item {
+                height: 26px;
+                min-height: 26px;
+                width: 100%;
+                color: var(--primary-color, $primary-blue-ink);
+                font-size: 2.6rem;
+                margin-left: 30px;
+            }
+        }
+
+        div.introduction {
+            height: 70px;
+            div.intro-form {
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-start;
+                color: var(--primary-color, $primary-blue-ink);
+                font-size: 2.6rem;
+                width: 100%;
+                height: 100%;
+                display: grid;
+                grid-template-columns: max-content 1fr max-content;
+                grid-template-rows: 1fr 1fr;
+
+                .bundle {
+                    height: 100%;
+                    grid-column: 1 / 2;
+                    grid-row: 1 / -1;
+                    align-self: center;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    margin: 0;
+                }
+
+                .calorie-goal {
+                    height: 100%;
+                    grid-column: 3 / 4;
+                    grid-row: 1 / -1;
+                    align-self: center;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    .calorie-input-wrapper {
+                        height: 28px;
+                        .calorie-input {
+                            padding: 0 2px;
+                            margin: 0;
+                            height: 100%;
+                            appearance: textfield;
+                            overflow-y: hidden;
+
+                            &:focus {
+                                background-color: rgb(250, 197, 197);
+                                transition: all 0.3s;
+                            }
+
+                            &::selection {
+                                background-color: rgb(255, 128, 128);
+                            }
+                        }
+                    }
+                }
+
+                input {
+                    margin: 0;
+                    width: 220px;
+                    color: var(--primary-color, $primary-blue-ink);
+                    font-size: inherit;
+                    height: 26px;
+                    border: none;
+                    outline: none;
+                    background: transparent;
+                    padding: 0;
+                    margin: 0;
+
+                    &::placeholder {
+                        color: #3a3a3a;
+                        font-size: 2.6rem;
+
+                        vertical-align: middle;
+                        line-height: 1.2;
+                        padding: 0;
+                        margin: 0;
+                    }
+
+                    &:hover {
+                        background-color: rgb(248, 248, 224);
+                        transition: all 0.3s;
+                    }
+
+                    &:focus {
+                        background-color: rgb(248, 250, 197);
+                        transition: all 0.3s;
+                    }
+                }
+                .name-field {
+                    height: 28px;
+                    input {
+                        vertical-align: top;
+                        width: 100%;
+                        max-width: 380px;
+                        height: 100%;
+                        padding: 0 2px;
+
+                        &::placeholder {
+                            color: #3a3a3a;
+                            font-size: 2.6rem;
+
+                            vertical-align: middle;
+                            line-height: 1.2; /* adjust as needed */
+                            padding: 0;
+                            margin: 0;
+                        }
+
+                        &:hover {
+                            background-color: rgb(248, 248, 224);
+                            transition: all 0.3s;
+                        }
+
+                        &:focus {
+                            background-color: rgb(197, 237, 250);
+                            transition: all 0.3s;
+                        }
+
+                        &::selection {
+                            background-color: rgb(135, 237, 255);
+                        }
+                    }
+                }
+            }
+        }
+        .item {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .calorie-goal {
+            text-align: right;
+
+            input {
+                width: 360px;
+            }
+        }
+    }
+
+    div.activate-settings-mobile {
+        visibility: hidden;
+        animation-duration: 0.4s;
+        animation-fill-mode: forwards;
+    }
+}
+
+body.awful main.main {
+    div.meals,
+    div.workouts,
+    div.meal-total-title,
+    div.workout-total-title,
+    div.grand-total {
+        text-transform: none;
+    }
+
+    div.stats,
+    .padding,
+    .item,
+    aside.sidebar div.upper-edge {
+        font-size: 3.4rem;
+    }
+
+    textarea,
+    div.grand-total,
+    .total-values-table,
+    aside.sidebar {
+        font-size: 3.2rem;
+    }
+
+    div.stats {
+        vertical-align: middle;
+        line-height: 26px;
+    }
+
+    aside.sidebar {
+        .note-book-info-row {
+            font-size: 3.2rem;
+        }
+        button {
+            transform: translateX(-5px) translateY(-4px);
+            &.save-pdf-btn {
+                transform: translateX(-8px) translateY(-4px);
+            }
+        }
+    }
+
+    & > div.wrapper .meal-item textarea {
+        line-height: normal;
+    }
+}
+
+body.readable main.main {
+    div.meals,
+    div.workouts,
+    div.meal-total-title,
+    div.workout-total-title,
+    div.grand-total {
+        text-transform: none;
+    }
+    div.workouts {
+        max-width: 399px;
+    }
+
+    div.stats,
+    .padding,
+    .item,
+    aside.sidebar div.upper-edge {
+        font-size: 3.2rem;
+    }
+
+    textarea,
+    div.grand-total,
+    .total-values-table,
+    aside.sidebar {
+        font-size: 3rem;
+    }
+
+    div.stats {
+        vertical-align: middle;
+        line-height: 26px;
+    }
+
+    div.wrapper .meal-item input[type="number"],
+    main.main > div.wrapper .workout-item input[type="number"] {
+        line-height: 26px;
+        padding-top: 5px;
+    }
+
+    aside.sidebar {
+        .note-book-info-row {
+            font-size: 3.2rem;
+        }
+        button {
+            transform: translateX(-6px) translateY(-4px);
+
+            &.clear-all-btn {
+                transform: translateX(-15px) translateY(-4px);
+            }
+
+            &.save-pdf-btn {
+                transform: translateX(-10px) translateY(-4px);
+            }
+        }
+    }
+}
+
+body.artistic main.main {
+    div.meals,
+    div.workouts,
+    div.meal-total-title,
+    div.workout-total-title,
+    div.grand-total {
+        text-transform: none;
+    }
+
+    div.space .padding {
+        font-size: 2.6rem;
+    }
+
+    div.wrapper div.introduction div.intro-form {
+        .name-field input {
+            padding: 2px 0;
+            padding: 2px 1px 2px 2px;
+            font-size: 2.4rem;
+        }
+
+        .calorie-goal .calorie-input-wrapper input.calorie-input {
+            padding: 2px 1px 2px 0;
+            font-size: 2.4rem;
+        }
+    }
+
+    div.workouts {
+        max-width: 396px;
+    }
+
+    div.meal-wrapper,
+    div.workout-wrapper {
+        align-items: baseline;
+    }
+    input.meal-calories,
+    input.workout-calories {
+        height: auto;
+    }
+    div.stats,
+    .padding,
+    .item,
+    aside.sidebar div.upper-edge {
+        font-size: 3.2rem;
+    }
+
+    textarea,
+    div.grand-total,
+    .total-values-table,
+    aside.sidebar {
+        font-size: 3rem;
+        line-height: 32px;
+    }
+
+    div.workout-item {
+        position: relative;
+    }
+
+    div.stats {
+        vertical-align: middle;
+        line-height: 32px;
+        position: relative;
+        z-index: 4;
+    }
+
+    aside.sidebar {
+        .note-book-info-row {
+            font-size: 3.2rem;
+        }
+        button {
+            transform: translateX(-12px) translateY(-2px);
+
+            &.clear-all-btn {
+                transform: translateX(-15px);
+            }
+        }
+    }
+}
+
+body.alt1::before {
+    background: url("../assets/img/bg-alt-1.jpg");
+    background-size: cover;
+}
+
+body.alt2::before {
+    background: url("../assets/img/bg-alt-2.jpg");
+    background-size: cover;
+}
+
+body.recent-sheet {
+    main.main {
+        .wrapper,
+        .wrapper textarea {
+            background-color: rgb(237, 237, 237);
+        }
+
+        .wrapper textarea {
+            transition: background-color none;
+        }
+        aside.sidebar {
+            background-color: rgb(237, 237, 237);
+        }
+    }
+}
+
+body.ink-blk {
+    --primary-color: $alt-black-ink;
+
+    aside .radio-btn input[type="radio"]:checked + label {
+        border-color: $alt-black-ink;
+    }
+
+    aside div.settings-wrap.t24hr-mode label span {
+        border-color: $alt-black-ink;
+    }
+
+    aside div.settings-wrap.coffee-stain label span,
+    aside div.settings-wrap.old-sheet label span {
+        border-color: $alt-black-ink;
+    }
+
+    aside div.settings-wrap.coffee-stain label span::after,
+    aside div.settings-wrap.old-sheet label span::after {
+        border-color: $alt-black-ink;
+    }
+}
+
+.manage {
+    background-color: #f7f7f7;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+}
+
+footer {
+    display: none;
+}

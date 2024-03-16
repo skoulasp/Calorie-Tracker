@@ -1,0 +1,110 @@
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOutClear {
+    0% {
+        opacity: 1;
+        border-color: #dc0000;
+        border-radius: 50%;
+    }
+
+    90% {
+        opacity: 1;
+        border-color: #dc0000;
+        border-radius: 50%;
+    }
+
+    100% {
+        border: 3px solid transparent;
+        border-radius: 50%;
+    }
+}
+
+@keyframes fadeOutSave {
+    0% {
+        border-color: #08b132;
+        border-radius: 50%;
+    }
+
+    90% {
+        border-color: #08b132;
+        border-radius: 50%;
+    }
+
+    100% {
+        border: 3px solid transparent;
+        border-radius: 50%;
+    }
+}
+
+@keyframes fadeOutRestore {
+    0% {
+        border-color: #dc008f;
+        border-radius: 50%;
+    }
+
+    90% {
+        border-color: #dc008f;
+        border-radius: 50%;
+    }
+
+    100% {
+        border: 3px solid transparent;
+        border-radius: 50%;
+    }
+}
+
+@keyframes zoomOut {
+    0% {
+        transform: scale(1.02);
+        transform-origin: center;
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes spinner-anim {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes ani-error-line {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ani-error-circle {
+    0% {
+        stroke-dasharray: 0, 260.75219024795285px;
+        stroke-dashoffset: 0;
+    }
+    35% {
+        stroke-dasharray: 120px, 120px;
+        stroke-dashoffset: -120px;
+    }
+    70% {
+        stroke-dasharray: 0, 260.75219024795285px;
+        stroke-dashoffset: -260.75219024795285px;
+    }
+    100% {
+        stroke-dasharray: 260.75219024795285px, 0;
+        stroke-dashoffset: -260.75219024795285px;
+    }
+}

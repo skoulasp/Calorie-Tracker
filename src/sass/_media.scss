@@ -1,0 +1,656 @@
+@media screen and (max-height: 990px) {
+    body {
+        overflow-y: visible;
+    }
+}
+
+@media screen and (min-width: 1250px) {
+    body {
+        // overflow-y: hidden;
+
+        &.artistic main.main {
+            div.space.entry {
+                height: 26px;
+                position: relative;
+                z-index: 4;
+
+                div.item {
+                    height: 26px;
+                    position: absolute;
+                    top: 7px;
+                    left: 70px;
+                    max-width: 920px;
+                    transition: background-color 0.4s;
+
+                    textarea {
+                        padding-left: 2px;
+                        line-height: 30px;
+                        height: 35px;
+                        top: -4px;
+                        font-size: 2.6rem;
+                        overflow-x: visible;
+                        background-color: transparent;
+                        transition: none;
+                        // z-index: 2;
+                    }
+
+                    div.meal-wrapper,
+                    div.workout-wrapper {
+                        transform: translateY(-7px);
+                        height: 26px;
+                        line-height: 26px;
+                        vertical-align: middle;
+                        align-items: baseline;
+
+                        input {
+                            padding-top: 8px;
+                            height: 18px;
+                            line-height: 26px;
+                            vertical-align: bottom;
+                        }
+                    }
+                    div.before-meal-helper {
+                        width: 320px;
+                        height: 26px;
+                        position: absolute;
+                        left: 0;
+                        top: -7px;
+                        bottom: 0;
+                        z-index: 3;
+                        transition: background-color 0.4s;
+                        &:hover {
+                            background-color: rgba(255, 94, 0, 0.25);
+                        }
+
+                        &.textarea-active {
+                            background-color: rgb(247, 247, 191);
+                        }
+                    }
+                    div.before-workout-helper {
+                        width: 320px;
+                        height: 26px;
+                        position: absolute;
+                        left: 0;
+                        top: -7px;
+                        bottom: 0;
+                        z-index: 3;
+                        transition: background-color 0.4s;
+                        &:hover {
+                            background-color: rgba(255, 94, 0, 0.25);
+                        }
+                        &.textarea-active {
+                            background-color: rgb(247, 247, 191);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    header {
+        display: none;
+    }
+    body {
+        main.main div.activate-settings {
+            position: absolute;
+            background-color: transparent;
+            background-image: url("../assets/icons/cog.svg");
+            background-size: 80%;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 50px;
+            height: 50px;
+            vertical-align: middle;
+            text-align: center;
+            z-index: 401;
+            right: 0;
+            bottom: 0;
+            top: auto;
+            cursor: grab;
+            opacity: 1;
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+
+        div.before-meal-helper,
+        div.before-workout-helper {
+            display: none;
+        }
+    }
+
+    body.settings-activated {
+        main.main div.activate-settings {
+            position: absolute;
+            background-color: transparent;
+            background-image: url("../assets/icons/right-arrow.svg");
+            background-size: 80%;
+            background-repeat: no-repeat;
+            background-position: center;
+            vertical-align: middle;
+            width: 55px;
+            height: 55px;
+            z-index: 401;
+            left: 8px;
+            bottom: 0;
+            top: auto;
+            cursor: grab;
+            opacity: 1;
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+
+        aside.sidebar {
+            div.space-end {
+                position: relative;
+
+                div.activate-settings-mobile {
+                    position: absolute;
+                    display: block;
+                    background-color: transparent;
+                    background-image: url("../assets/icons/right-arrow.svg");
+                    background-size: 80%;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    width: 55px;
+                    height: 100%;
+                    z-index: 401;
+                    left: 8px;
+                    bottom: 0;
+                    top: 0;
+                    right: auto;
+                    cursor: grab;
+                    opacity: 1;
+                    transition: none;
+                    animation-name: fadeIn;
+
+                    &:hover {
+                        opacity: 0.7;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1111px) {
+    main.main > div.wrapper {
+        div.meals,
+        div.workouts {
+            margin: 0;
+
+            text-align: center;
+        }
+    }
+}
+@media screen and (max-width: 970px) {
+    body {
+        height: auto;
+        overflow-y: auto;
+    }
+    main.main > div.wrapper {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+
+        &::after {
+            display: none;
+        }
+
+        .space .padding {
+            width: 0;
+            margin: 0;
+        }
+
+        div {
+            font-size: 2.6rem;
+            &.stats,
+            &.introduction {
+                padding: 0;
+            }
+            &.item {
+                justify-content: start;
+            }
+
+            &.padding {
+                visibility: hidden;
+            }
+            &.meals,
+            &.meal-item {
+                margin: 0;
+                margin-right: 20px;
+                margin-left: 2px;
+            }
+
+            &.space div {
+                padding: 0;
+            }
+
+            &.padding {
+                display: none;
+                padding: 0;
+            }
+            &.space {
+                position: relative;
+                textarea,
+                input {
+                    height: 26px;
+                }
+                div.item {
+                    height: 56px;
+                    justify-content: space-between;
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: 50%;
+                        left: 0;
+                        transform: translateY(-50%);
+                        width: 99.8%;
+                        padding: 1px 0;
+                        margin: 0;
+                        border: none;
+                        outline: none;
+                        background-color: rgb(12, 12, 183);
+                        z-index: 200;
+                    }
+                }
+            }
+        }
+
+        .space-total .grand-total {
+            font-size: 2.6rem;
+        }
+    }
+
+    aside.sidebar {
+        div.activate-settings-mobile {
+            visibility: visible;
+            // animation-duration: 0.4s;
+            // animation-fill-mode: forwards;
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    main.main > div.wrapper {
+        div.item-totals {
+            margin: 0;
+        }
+        div.meal-item {
+            flex-direction: column;
+            justify-content: space-between;
+            height: 56px;
+            span {
+                display: inline-block;
+            }
+        }
+        div.workout-item {
+            flex-direction: column;
+            height: 56px;
+            max-width: 350px;
+        }
+    }
+}
+
+@media screen and (max-width: 770px) {
+    main.main > div.wrapper {
+        div.introduction div.intro-form {
+            .bundle {
+                grid-column: 1 / -1;
+                grid-row: 1 / 2;
+                align-self: center;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                flex-wrap: nowrap;
+                .date {
+                    margin-right: 20px;
+                }
+            }
+
+            .calorie-goal {
+                height: 100%;
+                grid-column: 1 / -1;
+                grid-row: 2 / -1;
+                align-self: center;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                flex-wrap: nowrap;
+            }
+        }
+
+        .space-total .grand-total {
+            margin: 2px;
+        }
+
+        .calorie-label {
+            margin-left: 2px;
+        }
+
+        .calorie-input {
+            align-self: start;
+            max-width: 110px;
+        }
+
+        div.introduction div.intro-form {
+            flex-direction: column;
+            align-items: start;
+        }
+    }
+}
+
+@media screen and (max-width: 705px) {
+    .total-values-table {
+        align-items: end;
+    }
+
+    main.main {
+        aside.sidebar {
+            div.settings-wrap.radio-btn label,
+            div.settings-wrap.radio-btn div {
+                transform: translateY(-26px);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 680px) {
+    main.main > div.wrapper {
+        div {
+            div.meal-item {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: start;
+
+                .meal-wrapper {
+                    min-width: 0;
+                    height: 52px;
+                    // border: 2px solid rgb(19, 19, 158);
+
+                    input.meal-calories {
+                        text-align: center;
+                    }
+                }
+                textarea {
+                    width: 100%;
+                    max-width: 200px;
+                    height: 56px;
+                    // border: 2px solid rgb(19, 19, 158);
+                }
+            }
+
+            div.workout-item {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: start;
+
+                .workout-wrapper {
+                    min-width: 0;
+                    flex-direction: column;
+                    // border: 2px solid rgb(19, 19, 158);
+                    height: 56px;
+                }
+
+                textarea {
+                    width: 100%;
+                    max-width: 200px;
+                    height: 56px;
+                    // border: 2px solid rgb(19, 19, 158);
+                }
+            }
+        }
+
+        .meal-item {
+            input.meal-calories {
+                width: 100%;
+                max-width: 120px;
+            }
+
+            .meal-wrapper {
+                flex-direction: column;
+                align-items: start;
+                justify-content: flex-start;
+                text-align: left;
+
+                .meal-calories {
+                    text-align: left;
+                }
+
+                .calorie-label {
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    aside.sidebar {
+        height: 100%;
+        &::after {
+            display: none;
+        }
+        div.space-end {
+            height: 130px !important;
+            div.activate-settings-mobile {
+                // width: 55px;
+                // height: 55px;
+
+                // top: 0;
+                // bottom: 0;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+        }
+
+        div.note-book-row.info-txt {
+            margin-left: 3px;
+        }
+    }
+}
+
+@media screen and (max-width: 570px) {
+    aside.sidebar .settings-wrap.old-sheet label {
+        margin-right: 32px;
+    }
+}
+
+@media screen and (max-width: 535px) {
+    main.main > div.wrapper {
+        div {
+            font-size: 2.3rem;
+
+            &.space-total .grand-total {
+                margin-top: 0;
+            }
+
+            &.space {
+                font-size: 2.3rem;
+                textarea {
+                    font-size: 2.3rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 450px) {
+    main.main > div.wrapper {
+        body {
+            letter-spacing: -2px;
+            .stats {
+                letter-spacing: -2px;
+            }
+
+            .bundle {
+                flex-direction: column;
+            }
+        }
+
+        .meal-item input.meal-calories,
+        .meal-item input.workout-calories {
+            max-width: 90px;
+        }
+        .total-values-table {
+            letter-spacing: -1px;
+        }
+
+        div.item textarea,
+        div.item input {
+            letter-spacing: -3px;
+        }
+        .item-totals {
+            margin: 0;
+        }
+
+        div.intro-form {
+            height: 124px;
+
+            .calorie-goal {
+                align-items: flex-start;
+                line-height: 0.75;
+                text-align: left;
+            }
+
+            .bundle {
+                height: 100%;
+                text-align: left;
+                padding: 4px;
+
+                .name-field {
+                    width: 100%;
+                }
+
+                .date {
+                    width: 100%;
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+    aside.sidebar {
+        button {
+            letter-spacing: -2px;
+        }
+        div {
+            margin: 0;
+        }
+
+        .settings-wrap.old-sheet {
+            label {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+        }
+
+        div.settings-wrap {
+            justify-content: flex-start;
+            margin: 0;
+            button {
+                margin: 0;
+            }
+        }
+
+        div.settings-wrap.t24hr-mode div.note-book-row {
+            margin: 0;
+        }
+        button {
+            text-align: left;
+        }
+    }
+    div.note-book-row.info-txt {
+        letter-spacing: -2px;
+    }
+    aside.sidebar .settings-wrap.old-sheet label {
+        margin-right: 32px;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    main.main > div.wrapper {
+        div.introduction div.intro-form .calorie-goal {
+            justify-content: space-between;
+        }
+        .workout-total-title {
+            letter-spacing: -3px;
+        }
+        .stats {
+            letter-spacing: -3px;
+        }
+        .bundle {
+            flex-wrap: wrap;
+        }
+        div.meals {
+            text-align: left;
+        }
+        div.meals,
+        div.workouts {
+            width: auto;
+        }
+        .calorie-goal label {
+            display: none;
+        }
+        .calorie-goal .responsive-alt {
+            &::before {
+                content: "Calorie Limit:";
+                width: 100%;
+            }
+        }
+
+        .calorie-label {
+            letter-spacing: -2px;
+        }
+
+        .name-field input {
+            letter-spacing: -2px;
+        }
+
+        .coffee-stain {
+            width: 175px;
+            height: 175px;
+        }
+        aside.sidebar {
+            letter-spacing: -3px !important;
+        }
+    }
+
+    main.main {
+        aside.sidebar {
+            letter-spacing: -2px;
+            div.settings-wrap.radio-btn {
+                div.note-book-row {
+                    margin: 0;
+                }
+                label {
+                    width: auto;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 295px) {
+    div.activate-settings-mobile {
+        top: 60px !important;
+    }
+
+    .total-values-table {
+        margin-top: 28px;
+    }
+}
+
+@media screen and (max-height: 961px) {
+    body {
+        overflow-y: auto;
+    }
+}

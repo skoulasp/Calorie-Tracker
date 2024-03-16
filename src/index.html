@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Calorie Tracker</title>
+        <style>
+            body {
+                display: none;
+                background-color: rgb(27, 27, 27);
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="logo"></div>
+            <h1>Calorie Sheet</h1>
+            <div class="settings"></div>
+        </header>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="loading-txt">Loading...</span>
+                <div class="simple-spinner">
+                    <span></span>
+                </div>
+                <div class="ui-parent"></div>
+                <div class="button-group">
+                    <button class="button btn-reload">Reload Page</button>
+                    <button class="button btn-continue">Continue Anyway</button>
+                </div>
+            </div>
+        </div>
+        <div id="modal-backdrop" class="modal-backdrop"></div>
+        <main class="main">
+            <div class="wrapper">
+                <div class="introduction">
+                    <div class="intro-form">
+                        <div class="bundle">
+                            <div class="date"></div>
+                            <div class="name-field">
+                                <label for="name"></label>
+                                <input
+                                    name="name"
+                                    type="text"
+                                    placeholder="Your name (Optional)"
+                                    class="text"
+                                    maxlength="22"
+                                    autocomplete="off"
+                                />
+                            </div>
+                        </div>
+                        <div class="calorie-goal">
+                            <span class="responsive-alt"></span>
+                            <label for="calorie-goal">Today's calorie limit:</label>
+                            <div class="calorie-input-wrapper">
+                                <input name="calorie-goal" type="number" placeholder="Number of calories" class="calorie-input" />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line" />
+                <div></div>
+                <hr class="line" />
+                <div class="stats">
+                    <div class="meals">My Meals</div>
+                    <div class="workouts">My Workouts</div>
+                </div>
+                <hr class="line" />
+                <div class="space decor">
+                    <div class="padding"></div>
+                    <div class="item">
+                        <div class="meal-item"></div>
+                        <div class="workout-item"></div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding">C</div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="1"
+                                autocomplete="off"
+                            ></textarea>
+
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="1"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding"></div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="2"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="2"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding">A</div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="3"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="3"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding"></div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="4"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="4"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding">L</div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="5"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="5"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding"></div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="6"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="6"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding">O</div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="7"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="7"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding"></div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="8"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="8"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding">R</div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="9"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="9"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding"></div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="10"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="10"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding">I</div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="11"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="11"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding"></div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="12"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="12"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding">E</div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="13"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="13"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding"></div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="14"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="14"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding"></div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="15"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="15"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding">S</div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="16"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="16"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding"></div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="17"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="17"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding">H</div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="18"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="18"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line input-area" />
+                <div class="space entry">
+                    <div class="padding"></div>
+                    <div class="item">
+                        <div class="meal-item">
+                            <div class="before-meal-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="meal"
+                                placeholder="Add a meal"
+                                class="meal-input"
+                                data-pos="19"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="meal-wrapper">
+                                <input name="meal-calories" type="number" placeholder="Calories" class="meal-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="before-workout-helper"></div>
+                            <textarea
+                                rows="1"
+                                cols="19"
+                                name="workout"
+                                placeholder="Add a workout"
+                                class="workout-input"
+                                data-pos="19"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="workout-wrapper">
+                                <input name="workout-calories" type="number" placeholder="Calories" class="workout-calories" disabled />
+                                <span class="calorie-label">cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line" />
+                <div class="space-other">
+                    <div class="padding">E</div>
+                </div>
+                <hr class="line" />
+                <div class="space">
+                    <div class="padding"></div>
+                    <div class="item item-totals">
+                        <div class="title-container">
+                            <div class="meal-total">
+                                <div class="meal-total-title"></div>
+                            </div>
+                            <div class="workout-total">
+                                <div class="workout-total-title"></div>
+                            </div>
+                        </div>
+                        <div class="total-values-table">
+                            <div class="meal-total-value"></div>
+                            <div class="workout-total-value"></div>
+                        </div>
+                        <!-- <hr class="line" /> -->
+                        <div class="space-other">
+                            <!-- <div class="padding"></div> -->
+                        </div>
+                    </div>
+                </div>
+                <hr class="line" />
+                <div class="space-other"><div class="padding">E</div></div>
+                <hr class="line" />
+
+                <div class="space-other"></div>
+                <hr class="line" />
+                <div class="space-total">
+                    <div class="padding">T</div>
+                    <div class="grand-total">
+                        <span class="grand-total-text"></span><span class="total-meal-calorie-count"></span
+                        ><span class="total-workout-calorie-count"></span>
+                        <span class="total-calorie-count"></span>
+                    </div>
+                    <!-- <hr class="line-total" /> -->
+                </div>
+                <hr class="line" />
+                <div class="space-other"></div>
+                <hr class="line" />
+                <div class="space-other"></div>
+                <hr class="line" />
+                <div class="space-other"></div>
+                <hr class="line" />
+                <img src="assets/img/coffee-stain.png" alt="" class="coffee-stain" />
+                <div class="space-end"></div>
+            </div>
+            <aside class="sidebar">
+                <div class="upper-edge">My Preferences</div>
+                <hr class="line" />
+                <div class="note-book-row"></div>
+                <hr class="line" />
+                <div class="settings-wrap radio-btn">
+                    <div class="note-book-row">Handwriting Style:</div>
+                    <input type="radio" id="ugly-default" name="writing_style" value="Ugly" class="ugly-default" checked />
+                    <label for="ugly-default"
+                        >Ugly <span style="font-size: 14px; margin-left: -10px; letter-spacing: -1px">(default)</span></label
+                    >
+                    <input type="radio" id="awful-handwriting" name="writing_style" value="Awful" class="awful" />
+                    <label for="awful-handwriting">Awful</label>
+                    <input type="radio" id="readable-handwriting" name="writing_style" value="Readable" class="readable" />
+                    <label for="readable-handwriting">Readable</label>
+                    <input type="radio" id="artistic-handwriting" name="writing_style" value="Artistic" class="artistic" />
+                    <label for="artistic-handwriting">Artistic</label>
+                    <hr class="line line-one" />
+                    <hr class="line line-two" />
+                    <!-- <div class="note-book-row"></div> -->
+                </div>
+                <hr class="line" />
+                <div class="settings-wrap save-pdf">
+                    <button class="save-pdf-btn">Save to PDF</button>
+                </div>
+                <hr class="line" />
+                <div class="note-book-row"></div>
+                <hr class="line" />
+
+                <div class="settings-wrap clear-all">
+                    <button class="clear-all-btn">Clear all data</button>
+                </div>
+                <hr class="line" />
+                <div class="note-book-row"></div>
+                <hr class="line" />
+                <div class="settings-wrap restore">
+                    <button class="restore-btn">Restore settings</button>
+                </div>
+                <hr class="line" />
+                <div class="note-book-row"></div>
+                <hr class="line" />
+                <div class="settings-wrap t24hr-mode">
+                    <div class="note-book-row">24hr forget mode</div>
+                    <label>
+                        <input type="checkbox" />
+                        <span></span>
+                    </label>
+                    <hr class="line" />
+                </div>
+
+                <div class="note-book-row"></div>
+                <hr class="line" />
+                <div class="settings-wrap coffee-stain">
+                    <div class="note-book-row">Coffee Stain</div>
+                    <label>
+                        <input type="checkbox" class="coffee-stain-input" />
+                        <span></span>
+                    </label>
+                    <hr class="line" />
+                </div>
+                <div class="note-book-row"></div>
+                <hr class="line" />
+                <div class="settings-wrap old-sheet">
+                    <div class="note-book-row">The sheet is at least 10 years old</div>
+                    <label>
+                        <input type="checkbox" class="sheet-is-old" />
+                        <span></span>
+                    </label>
+                    <hr class="line" />
+                </div>
+                <hr class="line" />
+                <div class="note-book-row"></div>
+                <hr class="line" />
+                <div class="settings-wrap radio-btn ink-color">
+                    <div class="note-book-row">Ink Color:</div>
+                    <input type="radio" id="blue-ink" name="ink-color" value="blue" class="blue-ink-color" checked />
+                    <label for="blue-ink"
+                        >Blue <span style="font-size: 14px; margin-left: -10px; letter-spacing: -1px">(default)</span></label
+                    >
+                    <input type="radio" id="black-ink" name="ink-color" value="black" class="black-ink-color" />
+                    <label for="black-ink">Black</label>
+                    <hr class="line line-one" />
+                    <hr class="line line-two" />
+                </div>
+                <div class="note-book-row"></div>
+                <hr class="line" />
+
+                <div class="settings-wrap bg-select">
+                    <div class="note-book-row">Background image:</div>
+                    <input type="radio" id="default-bg" name="bg_style" value="Default" class="default" checked />
+                    <label for="default-bg">Default</label>
+                    <input type="radio" id="alternative-bg-1" name="bg_style" value="Alternative1" class="alternative1" />
+                    <label for="alternative-bg-1">Alternative 1</label>
+                    <input type="radio" id="alternative-bg-2" name="bg_style" value="Alternative2" class="alternative2" />
+                    <label for="alternative-bg-2">Alternative 2</label>
+                    <hr class="line line-one" />
+                    <hr class="line line-two" />
+                </div>
+
+                <hr class="line" />
+                <div class="note-book-row"></div>
+                <hr class="line" />
+                <div class="note-book-row"></div>
+                <hr class="line" />
+                <div class="note-book-info-row">Some info:</div>
+                <hr class="line" />
+                <div class="note-book-row"></div>
+                <hr class="line" />
+                <div class="note-book-row info-txt">
+                    This project was created by Petros Skoulas. It was built in 2023 using HTML, CSS (Sass "scss" syntax) and vanilla
+                    JavaScript.
+                </div>
+                <hr class="line" />
+                <div class="note-book-row"></div>
+                <hr class="line" />
+                <div class="note-book-row"></div>
+                <hr class="line" />
+                <div class="note-book-row"></div>
+                <hr class="line" />
+                <div class="space-end"><div class="activate-settings-mobile"></div></div>
+            </aside>
+            <div class="activate-settings"></div>
+        </main>
+
+        <footer>
+            <i class="information">&#9432;</i>
+        </footer>
+    </body>
+</html>
