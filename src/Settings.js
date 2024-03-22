@@ -1,6 +1,5 @@
 import Storage from "./Storage";
 import app from "./App";
-import CalorieCalculator from "./CalorieCalculator";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 
@@ -132,10 +131,8 @@ class Settings {
                 Storage.setInkColor(Settings.inkColor);
                 if (Settings.inkColor === "black") {
                     document.body.classList.add("ink-blk");
-                    // Settings.radioInkBlack.checked;
                 } else {
                     document.body.classList.remove("ink-blk");
-                    // Settings.radioInkBlue.checked;
                 }
             }
         });
@@ -179,11 +176,9 @@ class Settings {
                 Storage.clearAll();
                 app.clearInputs();
                 Settings.clearAllInputsBtn.style.animation = "fadeOutClear 12s";
-                // Settings.clearAllInputsBtn.classList.add("activated");
             }
 
             if (e.target === Settings.saveToPDFBtn) {
-                // Settings.saveToPDFBtn.classList.add("activated");
                 Settings.saveToPDFBtn.style.animation = "fadeOutSave 12s";
                 Settings.generatePDF(this.generateCalorieSummaryPDF(app.calorieCalculator.organizePDFData()));
             }
@@ -288,18 +283,12 @@ class Settings {
     }
 
     static generatePDF(data) {
-        var content = [
-            data,
-            // Include additional content as needed
-        ];
+        var content = [data];
 
-        // Define the PDF document definition
         var docDefinition = {
             content: content,
-            // Include additional document properties and styling options as needed
         };
 
-        // Generate the PDF document
         pdfMake.createPdf(data).download("calories.pdf");
     }
 

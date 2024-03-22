@@ -8,7 +8,6 @@ import "./sass/stylesheet.scss";
 class App {
     constructor() {
         this.inputEntries = document.querySelectorAll("div.space.entry");
-        // this.old = null;
         this.mealHelperDiv = document.querySelectorAll(".before-meal-helper");
         this.workoutHelperDiv = document.querySelectorAll(".before-workout-helper");
         this.fullName = Storage.getFullName();
@@ -73,20 +72,20 @@ class App {
 
         if (meals) {
             meals.forEach((meal) => {
-                this.meals[meal.id - 1] = meal;
-                this.mealInputs[meal.id - 1].value = meal.name;
-                this.mealInputs[meal.id - 1].nextElementSibling.firstElementChild.value = meal.calories;
-                this.mealInputs[meal.id - 1].nextElementSibling.firstElementChild.disabled = false;
+                this.meals[meal.id] = meal;
+                this.mealInputs[meal.id].value = meal.name;
+                this.mealInputs[meal.id].nextElementSibling.firstElementChild.value = meal.calories;
+                this.mealInputs[meal.id].nextElementSibling.firstElementChild.disabled = false;
             });
             this.calorieCalculator.displayTotalMealCalories(this.meals, this.calorieGoalInputVal);
         }
 
         if (workouts) {
             workouts.forEach((workout) => {
-                this.workouts[workout.id - 1] = workout;
-                this.workoutInputs[workout.id - 1].value = workout.name;
-                this.workoutInputs[workout.id - 1].nextElementSibling.firstElementChild.value = workout.calories;
-                this.workoutInputs[workout.id - 1].nextElementSibling.firstElementChild.disabled = false;
+                this.workouts[workout.id] = workout;
+                this.workoutInputs[workout.id].value = workout.name;
+                this.workoutInputs[workout.id].nextElementSibling.firstElementChild.value = workout.calories;
+                this.workoutInputs[workout.id].nextElementSibling.firstElementChild.disabled = false;
             });
             this.calorieCalculator.displayTotalWorkoutCalories(this.workouts, this.calorieGoalInputVal);
         }
@@ -259,21 +258,22 @@ class App {
 
     inputReader(e) {
         if (e.target.matches(".meal-input")) {
-            this.hiddenSpan.style.fontFamily = getComputedStyle(this.mealInputs[e.target.dataset.pos - 1]).fontFamily;
-            this.hiddenSpan.style.fontSize = getComputedStyle(this.mealInputs[e.target.dataset.pos - 1]).fontSize;
-            this.hiddenSpan.innerText = this.mealInputs[e.target.dataset.pos - 1].value;
+            this.hiddenSpan.style.fontFamily = getComputedStyle(this.mealInputs[e.target.dataset.pos]).fontFamily;
+            this.hiddenSpan.style.fontSize = getComputedStyle(this.mealInputs[e.target.dataset.pos]).fontSize;
+            this.hiddenSpan.innerText = this.mealInputs[e.target.dataset.pos].value;
             if (this.hiddenSpan.offsetWidth >= 297 && this.hiddenSpan.offsetWidth <= 325) {
-                this.mealInputs[e.target.dataset.pos - 1].setAttribute("maxlength", `${this.hiddenSpan.textContent.length}`);
+                this.mealInputs[e.target.dataset.pos].setAttribute("maxlength", `${this.hiddenSpan.textContent.length}`);
             } else {
-                this.mealInputs[e.target.dataset.pos - 1].setAttribute("maxlength", "32");
+                this.mealInputs[e.target.dataset.pos].setAttribute("maxlength", "32");
             }
 
             this.mealCandidate.id = e.target.dataset.pos;
             this.mealCandidate.name = e.target.value;
-            this.mealCandidate.calories = +document.querySelectorAll(".meal-calories")[this.mealCandidate.id - 1].value;
-            if (this.meals[this.mealCandidate.id - 1] && e.target.value === "") {
+            this.mealCandidate.calories = +document.querySelectorAll(".meal-calories")[this.mealCandidate.id].value;
+
+            if (this.meals[this.mealCandidate.id] && e.target.value === "") {
                 e.target.nextElementSibling.firstElementChild.value = "";
-                delete this.meals[this.mealCandidate.id - 1];
+                delete this.meals[this.mealCandidate.id];
                 Storage.removeMeal(this.mealCandidate.id);
                 this.calorieCalculator.displayTotalMealCalories(this.meals, this.calorieGoalInputVal);
             }
@@ -282,21 +282,22 @@ class App {
             this.mealCandidate.name = e.target.parentElement.parentElement.children[1].value;
             this.mealCandidate.calories = +e.target.value;
         } else if (e.target.matches(".workout-input")) {
-            this.hiddenSpan.style.fontFamily = getComputedStyle(this.workoutInputs[e.target.dataset.pos - 1]).fontFamily;
-            this.hiddenSpan.style.fontSize = getComputedStyle(this.workoutInputs[e.target.dataset.pos - 1]).fontSize;
-            this.hiddenSpan.innerText = this.workoutInputs[e.target.dataset.pos - 1].value;
+            this.hiddenSpan.style.fontFamily = getComputedStyle(this.workoutInputs[e.target.dataset.pos]).fontFamily;
+            this.hiddenSpan.style.fontSize = getComputedStyle(this.workoutInputs[e.target.dataset.pos]).fontSize;
+            this.hiddenSpan.innerText = this.workoutInputs[e.target.dataset.pos].value;
             if (this.hiddenSpan.offsetWidth >= 297 && this.hiddenSpan.offsetWidth <= 325) {
-                this.workoutInputs[e.target.dataset.pos - 1].setAttribute("maxlength", `${this.hiddenSpan.textContent.length}`);
+                this.workoutInputs[e.target.dataset.pos].setAttribute("maxlength", `${this.hiddenSpan.textContent.length}`);
             } else {
-                this.workoutInputs[e.target.dataset.pos - 1].setAttribute("maxlength", "32");
+                this.workoutInputs[e.target.dataset.pos].setAttribute("maxlength", "32");
             }
 
             this.workoutCandidate.id = e.target.dataset.pos;
             this.workoutCandidate.name = e.target.value;
-            this.workoutCandidate.calories = +document.querySelectorAll(".workout-calories")[this.workoutCandidate.id - 1].value;
-            if (this.workouts[Number(this.workoutCandidate.id - 1)] && e.target.value === "") {
+            this.workoutCandidate.calories = +document.querySelectorAll(".workout-calories")[this.workoutCandidate.id].value;
+
+            if (this.workouts[Number(this.workoutCandidate.id)] && e.target.value === "") {
                 e.target.nextElementSibling.firstElementChild.value = "";
-                delete this.workouts[this.workoutCandidate.id - 1];
+                delete this.workouts[this.workoutCandidate.id];
                 Storage.removeWorkout(this.workoutCandidate.id);
                 this.calorieCalculator.displayTotalWorkoutCalories(this.workouts, this.calorieGoalInputVal);
             }
@@ -311,17 +312,17 @@ class App {
 
     deleteCheck(e) {
         if (e.target.matches(".meal-input")) {
-            if (this.meals[this.mealCandidate.id - 1] && e.target.value === "") {
+            if (this.meals[this.mealCandidate.id] && e.target.value === "") {
                 e.target.nextElementSibling.firstElementChild.value = "";
-                delete this.meals[this.mealCandidate.id - 1];
+                delete this.meals[this.mealCandidate.id];
                 Storage.removeMeal(this.mealCandidate.id);
                 this.calorieCalculator.displayTotalMealCalories(this.meals, this.calorieGoalInputVal);
             }
         }
         if (e.target.matches(".workout-input")) {
-            if (this.workouts[this.workoutCandidate.id - 1] && e.target.value === "") {
+            if (this.workouts[this.workoutCandidate.id] && e.target.value === "") {
                 e.target.nextElementSibling.firstElementChild.value = "";
-                delete this.workouts[this.workoutCandidate.id - 1];
+                delete this.workouts[this.workoutCandidate.id];
                 Storage.removeWorkout(this.workoutCandidate.id);
                 this.calorieCalculator.displayTotalWorkoutCalories(this.workouts, this.calorieGoalInputVal);
             }
@@ -343,8 +344,8 @@ class App {
             }
 
             if (this.mealCandidate.id && this.mealCandidate.name && this.mealCandidate.calories) {
-                this.meals[this.mealCandidate.id - 1] = new Meal(...Object.values(this.mealCandidate));
-                Storage.saveMeal(this.meals[this.mealCandidate.id - 1]);
+                this.meals[this.mealCandidate.id] = new Meal(...Object.values(this.mealCandidate));
+                Storage.saveMeal(this.meals[this.mealCandidate.id]);
                 this.mealCandidate.id = this.mealCandidate.name = this.mealCandidate.calories = null;
                 this.calorieCalculator.displayTotalMealCalories(this.meals, this.calorieGoalInputVal);
                 if (
@@ -365,8 +366,8 @@ class App {
             }
 
             if (this.workoutCandidate.id && this.workoutCandidate.name && this.workoutCandidate.calories) {
-                this.workouts[this.workoutCandidate.id - 1] = new Workout(...Object.values(this.workoutCandidate));
-                Storage.saveWorkout(this.workouts[this.workoutCandidate.id - 1]);
+                this.workouts[this.workoutCandidate.id] = new Workout(...Object.values(this.workoutCandidate));
+                Storage.saveWorkout(this.workouts[this.workoutCandidate.id]);
                 this.workoutCandidate.id = this.workoutCandidate.name = this.workoutCandidate.calories = null;
                 this.calorieCalculator.displayTotalWorkoutCalories(this.workouts, this.calorieGoalInputVal);
                 if (
@@ -388,9 +389,9 @@ class App {
                 Storage.saveMeal(this.meals[this.mealCandidate.id]);
                 this.calorieCalculator.displayTotalMealCalories(this.meals, this.calorieGoalInputVal);
             } else if (e.target.matches(".meal-input")) {
-                if (this.meals[this.mealCandidate.id - 1] && this.mealCandidate.name !== this.meals[this.mealCandidate.id - 1].name) {
-                    this.meals[this.mealCandidate.id - 1] = new Meal(...Object.values(this.mealCandidate));
-                    Storage.saveMeal(this.meals[this.mealCandidate.id - 1]);
+                if (this.meals[this.mealCandidate.id] && this.mealCandidate.name !== this.meals[this.mealCandidate.id].name) {
+                    this.meals[this.mealCandidate.id] = new Meal(...Object.values(this.mealCandidate));
+                    Storage.saveMeal(this.meals[this.mealCandidate.id]);
                 }
             }
         } else {
@@ -406,11 +407,11 @@ class App {
                 this.calorieCalculator.displayTotalWorkoutCalories(this.workouts, this.calorieGoalInputVal);
             } else if (e.target.matches(".workout-input")) {
                 if (
-                    this.workouts[this.workoutCandidate.id - 1] &&
-                    this.workoutCandidate.name !== this.workouts[this.workoutCandidate.id - 1].name
+                    this.workouts[this.workoutCandidate.id] &&
+                    this.workoutCandidate.name !== this.workouts[this.workoutCandidate.id].name
                 ) {
-                    this.workouts[this.workoutCandidate.id - 1] = new Workout(...Object.values(this.workoutCandidate));
-                    Storage.saveWorkout(this.workouts[this.workoutCandidate.id - 1]);
+                    this.workouts[this.workoutCandidate.id] = new Workout(...Object.values(this.workoutCandidate));
+                    Storage.saveWorkout(this.workouts[this.workoutCandidate.id]);
                 }
             }
         } else {

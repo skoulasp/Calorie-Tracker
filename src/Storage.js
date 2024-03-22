@@ -208,8 +208,6 @@ class Storage {
         localStorage.removeItem("workouts");
         localStorage.removeItem("calorieLimit");
         localStorage.removeItem("fullName");
-
-        // If you want to clear the limit
         // localStorage.clear();
     }
 }
