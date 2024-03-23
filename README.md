@@ -38,38 +38,38 @@ You can use the Calorie Tracker [here](https://skoulasp.github.io/Calorie-Tracke
 
 ## Screenshots
 
-![Screenshot 1](https://i.imgur.com/jlJBHvV.jpeg)
-![Screenshot 2](https://i.imgur.com/Q63y65t.jpeg)
+**Main view** ![Screenshot 1](https://i.imgur.com/jlJBHvV.jpeg)
+**Settings Page** ![Screenshot 2](https://i.imgur.com/Q63y65t.jpeg)
 
 ## Installation
 
 To install and run the project locally:
 
-**1. Clone the repository to your local machine:**
+1. Clone the repository to your local machine:
 
 ```bash
 git clone https://github.com/skoulasp/Calorie-Tracker.git
 ```
 
-**2. Navigate to the project directory:**
+2. Navigate to the project directory:
 
 ```bash
 cd calorie-tracker
 ```
 
-**3. Install dependencies using npm:=**
+3. Install dependencies using npm:=
 
 ```bash
 npm install
 ```
 
-**4. Start the development server:**
+4. Start the development server:
 
 ```bash
 npm start
 ```
 
-**5. Open the project in your web browser at http://localhost:3000.**
+5. Open the project in your web browser at http://localhost:3000.
 
 These instructions provide step-by-step guidance on how to install and run the project locally.
 
