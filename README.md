@@ -38,9 +38,9 @@ You can use the Calorie Tracker [here](https://skoulasp.github.io/Calorie-Tracke
 
 ## Screenshots
 
-**Main view** ![Screenshot 1](https://i.imgur.com/jlJBHvV.jpeg)
+![Screenshot 1](https://i.imgur.com/jlJBHvV.jpeg)**Main view** 
 
-**Settings page** ![Screenshot 2](https://i.imgur.com/Q63y65t.jpeg)
+![Screenshot 2](https://i.imgur.com/Q63y65t.jpeg)**Settings page** 
 
 ## Installation
 
